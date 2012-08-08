@@ -1,0 +1,8 @@
+%h1= @name
+
+%div
+  - @photos.each do |p|
+    %div
+      %div= image_tag p.address.url(:thumb)
+  
+  %div= will_paginate @photos

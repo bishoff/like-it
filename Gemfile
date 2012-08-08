@@ -21,6 +21,9 @@ gem 'will_paginate'
 gem 'devise'
 gem 'paperclip'
 gem 'haml-rails'
+gem 'web-app-theme'
+gem 'hpricot'
+gem 'ruby_parser'
 
 # Use unicorn as the web server
 # gem 'unicorn'

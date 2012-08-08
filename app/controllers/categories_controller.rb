@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
+  
   def index
     @categories = Category.all
 
@@ -13,12 +14,15 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
-    @category = Category.find(params[:id])
-
+    # @category = Category.find_by_name(params[:id])
+    @photos = Category.find_by_name(params[:id]).photos.paginate(:page => params[:page]? params[:page] : 1, :per_page => 5)
+    
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { render :template => 'categories/get_category_photos'}# show.html.erb
+      # format.haml { render :template => 'get_category_photos'}# show.html.erb
       format.json { render json: @category }
     end
+
   end
 
 

@@ -1,12 +1,14 @@
 TestApp::Application.routes.draw do
-  get 'categories/:name' => 'categories#get_category_photos'
-  get 'categories/:name/:id' => 'categories#get_category_id_photo'
+  resources :likes
+
+  # get 'categories/:name' => 'categories#get_category_photos'
+  # get 'categories/:name/:id' => 'categories#get_category_id_photo'
   
   resources :photos
 
   resources :comments
 
-  # resources :categories
+  resources :categories
 
   get "pages/index"
 

@@ -1,8 +1,8 @@
 %h1= @name
 
-%div
+#photos
   - @photos.each do |p|
-    %div
-      %div= image_tag p.address.url(:thumb)
+    .photo= image_tag p.address.url(:thumb)
+      -if p.like
   
-  %div= will_paginate @photos
+#paginate= will_paginate @photos

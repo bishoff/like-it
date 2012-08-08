@@ -9,4 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
   has_many :comments
+  
+  has_one :like
+  has_one :photo, :through => :like
 end

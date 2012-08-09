@@ -3,7 +3,9 @@ class Photo < ActiveRecord::Base
 
   belongs_to :category
   
-  belongs_to :like
+  has_many :likes
+  has_many :users, :through => :likes
+
   
   has_many :comments
 

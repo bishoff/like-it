@@ -171,6 +171,7 @@ body {
 }
 
 #footer {
+  margin-top: 20px;
   padding-bottom: 20px;
 }
 
@@ -408,16 +409,4 @@ button.button:active, a.button:active {
 }
 .link_button{
   cursor: pointer;
-}
-
-/* cusom */
-.photo{
-  width:128px;
-  height:128px;
-  display:inline-block
-}
-#photos{
-  width:100%;
-  position:relative;
-  text-align:center;
 }

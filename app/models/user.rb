@@ -10,6 +10,6 @@ class User < ActiveRecord::Base
 
   has_many :comments
   
-  has_one :like
-  has_one :photo, :through => :like
+  has_many :likes
+  has_many :photos, :through => :likes
 end

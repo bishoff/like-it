@@ -1,31 +1,26 @@
 class PhotosController < ApplicationController
-  # GET /photos
-  # GET /photos.json
+  before_filter :authenticate_user!
+  
   def index
-    @photos = Photo.all
+    @photos = Photo.includes(:likes).where("likes.user_id=#{current_user.id}").order('likes.photo_id DESC').paginate(:page => params[:page]? params[:page] : 1, :per_page => 5)
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @photos }
-    end
+
+    # Client.joins('LEFT OUTER JOIN addresses ON addresses.client_id = clients.id')
+      # .all
   end
 
   # GET /photos/1
   # GET /photos/1.json
   def show
+    @comments = Comment.new
     @photo = Photo.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @photo }
-    end
+    @like = Like.new
   end
 
   # GET /photos/new
   # GET /photos/new.json
   def new
     @photo = Photo.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @photo }

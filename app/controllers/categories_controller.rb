@@ -1,46 +1,24 @@
 class CategoriesController < ApplicationController
+  before_filter :authenticate_user!
   # GET /categories
   # GET /categories.json
   
   def index
     @categories = Category.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @categories }
-    end
   end
 
   # GET /categories/1
   # GET /categories/1.json
   def show
-    # @category = Category.find_by_name(params[:id])
-    @photos = Category.find_by_name(params[:id]).photos.paginate(:page => params[:page]? params[:page] : 1, :per_page => 5)
-    
-    respond_to do |format|
-      format.html { render :template => 'categories/get_category_photos'}# show.html.erb
-      # format.haml { render :template => 'get_category_photos'}# show.html.erb
-      format.json { render json: @category }
-    end
-
-  end
-
-
-  # GET /categories/:name
-  def get_category_photos
     @name = params[:name]
-    
     @photos = Category.find_by_name(params[:name]).photos.paginate(:page => params[:page]? params[:page] : 1, :per_page => 5)
-
   end
 
   # GET /categories/:name/:id
   def get_category_id_photo
-    
-    # @photo = Category.find_by_name(params[:name]).photos.paginate(:page => params[:page]? params[:page] : 1, :per_page => 5)
+    @comments = Comment.new
     @photo = Photo.find(params[:id])
     # @photo = Category.find_by_name(params[:name]).photos.find(params[:id])
-
   end
 
   # GET /categories/new

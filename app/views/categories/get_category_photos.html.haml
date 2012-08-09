@@ -3,6 +3,5 @@
 #photos
   - @photos.each do |p|
     .photo= image_tag p.address.url(:thumb)
-      -if p.like
   
 #paginate= will_paginate @photos

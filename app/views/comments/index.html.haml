@@ -1,23 +1,10 @@
-%h1 Listing comments
 
-%table
-  %tr
-    %th Text
-    %th User
-    %th Photo
-    %th
-    %th
-    %th
+%h1 Comments
 
-  - @comments.each do |comment|
-    %tr
-      %td= comment.text
-      %td= comment.user_id
-      %td= comment.photo_id
-      %td= link_to 'Show', comment
-      %td= link_to 'Edit', edit_comment_path(comment)
-      %td= link_to 'Destroy', comment, :confirm => 'Are you sure?', :method => :delete
+#comments
+  = render :partial => 'photos/comment', :collection => @comments
 
-%br
-
-= link_to 'New Comment', new_comment_path
+/ .apple_pagination
+.flickr_pagination
+  .page_info= page_entries_info @comments
+  = will_paginate @comments, :container => false

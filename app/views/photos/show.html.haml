@@ -1,12 +1,9 @@
-%p#notice= notice
-
-%p
-  %b Category:
-  = @photo.category_id
-%p
-  %b Address:
-  = @photo.address
-
-= link_to 'Edit', edit_photo_path(@photo)
-\|
-= link_to 'Back', photos_path
+#photo= image_tag @photo.address.url(:small)
+#like-it
+  - if @photo.users.include?(current_user)
+    like_it
+  - else
+    = render 'like_form'
+- if @photo.comments.count > 0
+  = render 'comments'
+= render 'comment_form'

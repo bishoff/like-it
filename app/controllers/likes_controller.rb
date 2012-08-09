@@ -1,4 +1,5 @@
 class LikesController < ApplicationController
+  before_filter :authenticate_user!
   # GET /likes
   # GET /likes.json
   def index
@@ -44,7 +45,7 @@ class LikesController < ApplicationController
 
     respond_to do |format|
       if @like.save
-        format.html { redirect_to @like, notice: 'Like was successfully created.' }
+        format.html { redirect_to request.env['HTTP_REFERER'], notice: 'Like was successfully created.' }
         format.json { render json: @like, status: :created, location: @like }
       else
         format.html { render action: "new" }

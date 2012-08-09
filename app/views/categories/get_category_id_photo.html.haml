@@ -1,1 +1,8 @@
 %div= image_tag @photo.address.url(:small)
+- if @photo.users.include?(current_user)
+  %p 'like_it'
+- else
+  %p 'Click if like_it'
+
+#comments
+  = render 'comments'

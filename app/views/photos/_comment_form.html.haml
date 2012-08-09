@@ -1,0 +1,19 @@
+#comment-form
+  %h3 #Leave a comment
+  = form_for @comments do |f|
+    -if @comments.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@comment.errors.count, "error")} prohibited this comment from being saved:"
+        %ul
+          - @comments.errors.full_messages.each do |msg|
+            %li= msg
+
+    = f.hidden_field :photo_id, :value => @photo.id
+    = f.hidden_field :user_id, :value => current_user.id
+    = f.hidden_field :return_path, :value => [:categories, @photo.category.name, @photo.id].join('/')
+
+    .field
+      = f.label :text
+      = f.text_field :text
+    .actions
+      = f.submit 'Add comment'

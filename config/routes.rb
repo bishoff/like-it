@@ -1,8 +1,14 @@
 TestApp::Application.routes.draw do
 
-  get 'categories/:name' => 'categories#show'
+  get 'categories'           => 'categories#index'
+  get 'categories/:name'     => 'categories#show'
   get 'categories/:name/:id' => 'photos#show', :as => :photo_show
-  get 'categories' => 'categories#index'
+  
+  get 'navigations' => 'navigations#index', :as => :navigations
+  
+  get 'events/:user_id/likes'      => 'navigations#show_likes',       :as => :event_likes
+  get 'events/:user_id/comments'   => 'navigations#show_comments',    :as => :event_comments
+  get 'events/:user_id/navigation' => 'navigations#show_navigations', :as => :event_navigations
 
   resources :photos
   resources :likes

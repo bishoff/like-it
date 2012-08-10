@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120808075322) do
+ActiveRecord::Schema.define(:version => 20120810074244) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(:version => 20120808075322) do
     t.string   "text"
     t.integer  "user_id"
     t.integer  "photo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "eventtable_id"
+    t.string   "eventtable_type"
+    t.text     "eventtable_body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -44,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20120808075322) do
     t.string   "address_content_type"
     t.integer  "address_file_size"
     t.datetime "address_updated_at"
+    t.integer  "likes_count",          :default => 0
   end
 
   create_table "users", :force => true do |t|
@@ -59,6 +69,8 @@ ActiveRecord::Schema.define(:version => 20120808075322) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "likes_count",            :default => 0
+    t.integer  "comments_count",         :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

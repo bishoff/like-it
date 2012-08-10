@@ -1,0 +1,8 @@
+%h1 User likes
+
+#photos
+  - @user_photos.each do |p|
+    .photo-box
+      .photo
+        = image_tag(p.address.url(:thumb))
+.clear

@@ -6,10 +6,11 @@
       .photo
         = link_to image_tag( p.address.url(:thumb) ), photo_show_path(:name => p.category.name, :id => p.id)
       .like
-        - if p.users.include?(current_user)
-          like_it
-        - else 
-          &nbsp;
+        = p.likes_count
+        / - if p.users.include?(current_user)
+        /   like_it
+        / - else 
+        /   &nbsp;
 
 / .apple_pagination
 .flickr_pagination

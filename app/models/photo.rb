@@ -3,11 +3,9 @@ class Photo < ActiveRecord::Base
 
   belongs_to :category
   
+  has_many :comments
   has_many :likes
   has_many :users, :through => :likes
 
-  
-  has_many :comments
-
-  has_attached_file :address, :styles => { :small => "150x150", :thumb => "128x128>" }
+  has_attached_file :address, :styles => { :small => "150x150", :thumb => "128x128>" , :large => "500x500"}
 end

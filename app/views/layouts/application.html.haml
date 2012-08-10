@@ -18,7 +18,8 @@
           %ul.wat-cf
             - if user_signed_in?
               %li
-                = t("web-app-theme.profile", :default => 'Signed in as: ' + current_user.email)
+                %span.current_user
+                  = t("web-app-theme.profile", :default => 'Signed in as: ' + current_user.email)
               %li
                 = link_to( t("web-app-theme.logout", :default => "Logout"), destroy_user_session_path, :method => :delete, :class => :logout)
             - else
@@ -31,7 +32,7 @@
             %li= link_to 'Categories', '/'
             %li= link_to 'Photos', photos_path
             %li= link_to 'Comments', comments_path
-            %li= link_to 'Navigation', '#'
+            %li= link_to 'Navigation', navigations_path
       #wrapper.wat-cf
         .flash
           - flash.each do |type, message|

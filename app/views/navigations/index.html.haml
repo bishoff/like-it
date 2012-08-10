@@ -1,0 +1,19 @@
+%h1 User navigation
+
+%table
+  %tr
+    %th Email
+    %th Navigation
+    %th Last SignIn
+    %th Last SignOut
+    %th Likes
+    %th Comments
+
+  - @users.each do |user|
+    %tr
+      %td= user.email
+      %td= link_to 'pre', event_navigations_path(:user_id => user.id)
+      %td sign in
+      %td sign out
+      %td= link_to user.likes_count, event_likes_path(:user_id => user.id)
+      %td= link_to user.comments_count, event_comments_path(:user_id => user.id)
